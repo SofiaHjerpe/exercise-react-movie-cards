@@ -1,15 +1,53 @@
-export function AddMovie() {
-  const handleOnClick: MouseEventHandler<HTMLButtonElement> = async () => {};
+import { MouseEventHandler, useState } from "react";
+import { IMovie } from "../interfaces";
+
+export function AddMovie(): JSX.Element {
+  const movies: IMovie[] = [];
+  const [movieTitle, setTitle] = useState("");
+  const [genre, setGenre] = useState("");
+  const [range, setRange] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handleOnClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+    console.log(movieTitle);
+    console.log(genre);
+    console.log(range);
+    console.log(description);
+    const movieObject = {
+      id: movies.length,
+      title: movieTitle,
+      genre: genre,
+      range: range,
+      description: description,
+    };
+    movies.push(movieObject);
+    console.log(movies);
+  };
   return (
     <form className="form">
       <label htmlFor="title">
         Title
-        <input className="title" type="text" id="title" placeholder="Title"></input>
+        <input
+          onChange={(event) => setTitle(event.target.value)}
+          type="text"
+          value={movieTitle}
+          id="title"
+          placeholder="Title"
+        ></input>
       </label>
 
       <label htmlFor="range">
         Range
-        <input type="range" list="markers" min="0" max="5" id="range"></input>
+        <input
+          value={range}
+          type="range"
+          onChange={(event) => setRange(event.target.value)}
+          list="markers"
+          min="0"
+          max="5"
+          id="range"
+        ></input>
         <datalist id="markers">
           <option value="0"></option>
           <option value="5"></option>
@@ -17,20 +55,25 @@ export function AddMovie() {
       </label>
       <label htmlFor="genre">
         Genre
-        <select name="genre" id="genre">
-          <option>Sci-fi</option>
-          <option>Drama</option>
-          <option>Action</option>
-          <option>Comedy</option>
-          <option>Thriller</option>
-          <option>Romance</option>
-          <option>Other</option>
+        <select value={genre} id="genre" onChange={(event) => setGenre(event.target.value)}>
+          <option value="Sci-fi">Sci-fi</option>
+          <option value="Drama">Drama</option>
+          <option value="Action">Action</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Romance">Romance</option>
+          <option value="Other">Other</option>
         </select>
       </label>
 
       <label className="description" htmlFor="description">
         Description
-        <textarea placeholder="Type something" id="description"></textarea>
+        <textarea
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          placeholder="Type something"
+          id="description"
+        ></textarea>
       </label>
       <div className="form-buttons">
         <button>Cancel</button>
