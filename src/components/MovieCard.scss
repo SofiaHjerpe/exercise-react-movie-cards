@@ -1,9 +1,20 @@
+@use "../src/scss/abstracts/colors" as *;
 .card {
   display: flex;
   flex-direction: column;
   max-width: 400px;
   border: 2px solid #000;
   border-radius: 4px;
-  padding: 20px;
+  padding: 5px;
   gap: 15px;
+  h4 {
+    color: $grey;
+    font-size: 20px;
+  }
+  .info {
+    display: flex; 
+    flex-direction: column;
+    align-self: flex-end;
+  }
 }
+
