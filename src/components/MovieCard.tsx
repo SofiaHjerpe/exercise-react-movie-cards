@@ -1,12 +1,25 @@
-export function MovieCard() {
+
+import { MouseEventHandler } from "react";
+import { IMovie } from "../interfaces";
+interface IMovieCard {
+  movie: IMovie;
+  deleteMovie: (id: number) => void;
+}
+
+export function MovieCard({ movie, deleteMovie }: IMovieCard): JSX.Element {
+    const handleDeleteCardOnClick: MouseEventHandler<HTMLDivElement> = (event) =>{
+        deleteMovie(movie.id);
+    }
   return (
-    <div className="card">
-      <h4>Title</h4>
-      <div className="info">
-        <p>num /5</p>
-        Genre
+      <div className="card" onClick={handleDeleteCardOnClick}>
+            <h2>{movie.title}</h2>
+            <div className="info">
+              <p>{movie.range} /5</p>
+              <p>{movie.genre}</p>
+            </div>
+            <p>{movie.description}</p>
+       
       </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias sunt neque facere architecto eius nam rerum doloribus nihil distinctio officiis qui provident iste maiores, autem dolores recusandae vel asperiores ratione.</p>
-    </div>
+  
   );
 }
