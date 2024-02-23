@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react";
+import { FormEventHandler, useState } from "react";
 import { IMovie } from "../interfaces";
 import { MovieList } from "./MovieList";
 
@@ -10,7 +10,7 @@ export function AddMovie(): JSX.Element {
   const [range, setRange] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleOnClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+  const handleOnSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     console.log(movieTitle);
     console.log(genre);
@@ -34,7 +34,7 @@ export function AddMovie(): JSX.Element {
   }
   return (
     <div>
-      <form className="form">
+      <form className="form" onSubmit={handleOnSubmit}>
         <label htmlFor="title">
           Title
           <input
@@ -47,18 +47,21 @@ export function AddMovie(): JSX.Element {
         </label>
 
         <label htmlFor="range">
-          Range
+          Range(1-5)
           <input
             value={range}
             type="range"
             onChange={(event) => setRange(event.target.value)}
             list="markers"
-            min="0"
+            min="1"
             max="5"
             id="range"
           ></input>
           <datalist id="markers">
-            <option value="0"></option>
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
             <option value="5"></option>
           </datalist>
         </label>
@@ -86,7 +89,7 @@ export function AddMovie(): JSX.Element {
         </label>
         <div className="form-buttons">
           <button>Cancel</button>
-          <button onClick={handleOnClick}>Add</button>
+          <button type="submit">Add</button>
         </div>
       </form>
       <MovieList movies={movie} deleteMovie={deleteMovie} />

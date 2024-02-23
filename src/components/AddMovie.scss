@@ -7,14 +7,18 @@
   border-radius: 4px;
   padding: 20px;
   gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
   .description {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+
     textarea {
       resize: none;
       padding: 10px;
+      font-family: "Inter", sans-serif;
       outline: none;
     }
   }
@@ -22,6 +26,7 @@
   input,
   select {
     padding: 10px;
+    font-family: "Inter", sans-serif;
   }
   .form-buttons {
     display: flex;
@@ -35,6 +40,7 @@
       border: 1px solid $grey;
       color: $grey;
       font-weight: 500;
+      font-family: "Inter", sans-serif;
     }
   }
 
@@ -43,5 +49,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    font-family: "Inter", sans-serif;
   }
 }
